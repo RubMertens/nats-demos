@@ -1,14 +1,9 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
-
-using System.Dynamic;
-using System.Runtime.CompilerServices;
 using System.Text;
 using System.Text.Json;
-using System.Text.Json.Serialization;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Microsoft.VisualBasic;
 using NATS.Client;
 
 var factory = new ConnectionFactory();
@@ -19,6 +14,13 @@ connection.OnSerialize = o => Encoding.UTF8.GetBytes(JsonSerializer.Serialize(o,
     PropertyNamingPolicy = JsonNamingPolicy.CamelCase
 }));
 
+
+var conveyors = new List<Conveyor>()
+{
+    new("North-1"),
+    new("Middle-1"),
+    new("South-1"),
+};
 
 var rn = new Random();
 string CreateBarcode()
@@ -47,20 +49,20 @@ var provider = services.BuildServiceProvider();
 var logger = provider.GetRequiredService<ILogger<Program>>();
 
 var count = 0;
-var subject = "packing.peanuts";
-
-
-
-
-
+const string baseSubject = "packing.conveyor";
+var random = new Random();
 while (true)
 {
-    var message = new PackingScannerMessage(count++, CreateBarcode(), DateTime.UtcNow); 
-    connection.Publish(subject, message);
-    logger.LogInformation("Published packing message {count}", count);
-    await Task.Delay(1000);
+    foreach (var conveyor in conveyors)
+    {
+        var message = new PackingScannerMessage(count++, CreateBarcode(), DateTime.UtcNow); 
+        connection.Publish($"{baseSubject}.{conveyor.Name}", message);
+        logger.LogInformation("Published packing message {id} for conveyor {cId}", message.Id, conveyor.Name);
+        await Task.Delay(random.Next(150));
+    }
 }
 
-
 public record PackingScannerMessage(int Id, string Barcode, DateTime time);
+
+public record Conveyor(string Name);
 

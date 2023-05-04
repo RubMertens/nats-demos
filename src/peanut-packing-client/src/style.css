@@ -21,11 +21,11 @@ article {
   border-radius: 8px;
   padding: 16px;
   margin: 8px;
+  width: 20em;
 }
 
 #status-container{
   display: flex;
   flex-wrap: wrap;
-  
-  
+  justify-content: space-around;
 }
