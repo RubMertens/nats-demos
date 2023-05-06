@@ -1,0 +1,4 @@
+include "./jetstream-config"
+include "./resolver-config"
+
+system_account: "AA46UMWMO7MTNJMJ2FJUYBWOAQCPFMX4OCCLCIEUILA6XNCJJGJQTDMG"

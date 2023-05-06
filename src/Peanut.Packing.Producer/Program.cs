@@ -8,8 +8,15 @@ using NATS.Client;
 using Peanut.Packing.Models;
 
 var factory = new ConnectionFactory();
+var options = ConnectionFactory.GetDefaultOptions();
 
-using var connection = factory.CreateEncodedConnection("nats://localhost:4222");
+options.Url = "nats://localhost:4222";
+
+var credentialsPath = Path.GetFullPath(Environment.CurrentDirectory + "../../../../../nats-server/conveyor.creds");
+options.SetUserCredentials(credentialsPath);
+
+using var connection = factory.CreateEncodedConnection(options);
+
 connection.OnSerialize = o => Encoding.UTF8.GetBytes(JsonSerializer.Serialize(o, new JsonSerializerOptions()
 {
     PropertyNamingPolicy = JsonNamingPolicy.CamelCase
