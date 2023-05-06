@@ -3,7 +3,7 @@ import {connect, consumerOpts, createInbox, JSONCodec} from "nats.ws";
 
 
 const nc = await connect({
-    servers:["ws://localhost:8888"]
+    servers: ["ws://localhost:8888"]
 });
 
 
@@ -13,9 +13,9 @@ type PackingMessage = {
     time: Date
 }
 
-const createOrUpdateStatus = (m :PackingMessage, conveyor:string) => {
+const createOrUpdateStatus = (m: PackingMessage, conveyor: string) => {
     let el = document.getElementById(`conveyor-${conveyor}`);
-    if(!el){
+    if (!el) {
         const articleContainer = document.getElementById("status-container") as HTMLDivElement
         el = document.createElement("article");
         el.classList.add("status");
@@ -32,34 +32,24 @@ const createOrUpdateStatus = (m :PackingMessage, conveyor:string) => {
     return el;
 }
 
-
-
 const codec = JSONCodec();
-// const sub = nc.subscribe("packing.conveyors.>");
-// (async () => {
-//     for await (const m of sub){
-//         const message = codec.decode(m.data) as PackingMessage;
-//         console.log(m.subject, m);
-//         const [_,__,conveyor] = m.subject.split(".")
-//         createOrUpdateStatus(message, conveyor);
-//     }
-// })();
 
 const js = await nc.jetstream();
 const consumerOptions = consumerOpts();
 // consumerOptions.durable("packing client");
-consumerOptions.manualAck()
-consumerOptions.ackExplicit();
+// consumerOptions.manualAck()
+consumerOptions.ackNone();
+consumerOptions.replayInstantly();
 consumerOptions.deliverTo(createInbox());
 consumerOptions.deliverLastPerSubject();
 
 const sub = await js.subscribe("packing.conveyor.>", consumerOptions);
 
 (async () => {
-    for await (const m of sub){
+    for await (const m of sub) {
         const message = codec.decode(m.data) as PackingMessage;
         console.log(m.subject, m);
-        const [_,__,conveyor] = m.subject.split(".")
+        const [_, __, conveyor] = m.subject.split(".")
         createOrUpdateStatus(message, conveyor);
         m.ack();
     }

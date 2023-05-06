@@ -5,6 +5,7 @@ using System.Text.Json;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using NATS.Client;
+using Peanut.Packing.Models;
 
 var factory = new ConnectionFactory();
 
@@ -22,7 +23,6 @@ var conveyors = new List<Conveyor>()
     new("South-1"),
 };
 
-var rn = new Random();
 string CreateBarcode()
 {
     const string chars = "0123456789";
@@ -61,8 +61,4 @@ while (true)
         await Task.Delay(random.Next(150));
     }
 }
-
-public record PackingScannerMessage(int Id, string Barcode, DateTime time);
-
-public record Conveyor(string Name);
 
