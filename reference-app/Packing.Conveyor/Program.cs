@@ -21,8 +21,15 @@ var option = ConnectionFactory.GetDefaultOptions();
 //Important to know is that it is a binary protocol with utf8 encoding
 option.Url = "nats://localhost:4222";
 
+//after configuring the nsc (nats secure context) and generating our creds files
+//we can use them to authenticate with the server
+//this starts the flow of connecting using a signed nonce
+option.SetUserCredentials("./conveyor.creds");
+
 //creating the connection is a easy as calling CreateConnection on the factory
 var factory = new ConnectionFactory();
+
+
 
 //there's several options for creating a connection.
 //the secure is for auth (more about that later)
@@ -30,6 +37,8 @@ var factory = new ConnectionFactory();
 //but since it comes with some limitations, let's use the normal connection
 //and handle encoding/decoding ourselves
 using var connection = factory.CreateConnection(option);
+
+
 
 //just some fluff for creating interesting looking messages
 var random = new Random();

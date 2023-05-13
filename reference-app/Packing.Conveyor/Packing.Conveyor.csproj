@@ -16,4 +16,10 @@
       <ProjectReference Include="..\Packing.Models\Packing.Models.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <None Update="conveyor.creds">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+    </ItemGroup>
+
 </Project>
