@@ -18,3 +18,18 @@ websocket {
 jetstream {
     store_dir: "./data"
 }
+
+
+# one cool feature about this config setup is the fact you can import other partial configs.
+# let's use it to impor the generated authentication context
+
+include "./resolver-config"
+
+
+# The resolver needs a couple of things
+# we give the server the signed jwt token of the operator
+# (which could be verified by the corresponding private key
+# we also tell it what the system account is and what accounts exist in the system
+# notice we use the public NKEY of an account as the name with their jwt as the value
+# Users that were signed by the account can now sign a nonce on connect and use 
+# that to prove they are part of the account. 
