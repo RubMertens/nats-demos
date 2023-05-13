@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Packing.Conveyor", "Packing.Conveyor\Packing.Conveyor.csproj", "{954272C0-4D71-4086-BCEC-AE0820F4F85D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Packing.Models", "Packing.Models\Packing.Models.csproj", "{3B7317C2-D230-4B19-B51B-04FEF083168A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Packing.Checker", "Packing.Checker\Packing.Checker.csproj", "{FEC1AD74-983B-4738-A974-68F9903AEC33}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{954272C0-4D71-4086-BCEC-AE0820F4F85D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{954272C0-4D71-4086-BCEC-AE0820F4F85D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{954272C0-4D71-4086-BCEC-AE0820F4F85D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{954272C0-4D71-4086-BCEC-AE0820F4F85D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3B7317C2-D230-4B19-B51B-04FEF083168A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B7317C2-D230-4B19-B51B-04FEF083168A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B7317C2-D230-4B19-B51B-04FEF083168A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B7317C2-D230-4B19-B51B-04FEF083168A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FEC1AD74-983B-4738-A974-68F9903AEC33}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FEC1AD74-983B-4738-A974-68F9903AEC33}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FEC1AD74-983B-4738-A974-68F9903AEC33}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FEC1AD74-983B-4738-A974-68F9903AEC33}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

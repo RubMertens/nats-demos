@@ -1,0 +1,20 @@
+
+
+# configuring the nats-server
+# config for nats (sadly) uses a custom different 
+# it can be full json, tries to be less cumbersome
+port: 4222
+debug:true
+trace: false
+
+# expose the websocket port without tls
+websocket {
+    port: 8888
+    no_tls: true
+}
+
+# configuring the jetstream server
+# tell it to save the messages to the data directory
+jetstream {
+    store_dir: "./data"
+}
