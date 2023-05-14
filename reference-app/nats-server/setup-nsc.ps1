@@ -28,3 +28,13 @@
 #⚠ MANUAL add system account to config ⚠
 #for example:
 # system_account: "AA46UMWMO7MTNJMJ2FJUYBWOAQCPFMX4OCCLCIEUILA6XNCJJGJQTDMG"
+
+Copy-Item -Path .\creds\checker.creds -Destination ..\Packing.Checker\checker.creds
+Copy-Item -Path .\creds\conveyor.creds -Destination ..\Packing.Conveyor\conveyor.creds
+Copy-Item -Path .\creds\dashboard.creds -Destination ..\packing-dashboard\dashboard.creds
+
+#maybe we want to prevent the dashboard from publishing any messages too
+#You can deny subjects, allow other subjects,  use wildcards, etc.
+.\nsc.exe edit user dashboard --deny-pub packing.`>
+.\nsc.exe generate creds --account peanuts --name dashboard --output-file ./creds/dashboard.creds
+Copy-Item -Path .\creds\dashboard.creds -Destination ..\packing-dashboard\dashboard.creds

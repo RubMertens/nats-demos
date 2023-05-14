@@ -19,6 +19,8 @@ var logger = sp.GetService<ILogger<Program>>();
 //create the connection using the same way
 var options = ConnectionFactory.GetDefaultOptions();
 options.Url = "nats://localhost:4222";
+//here we also pass the creds file
+options.SetUserCredentials("./checker.creds");
 using var connection = new ConnectionFactory().CreateConnection(options);
 
 //one of the limitations of the encoded connection is the lack of support for jetstream
