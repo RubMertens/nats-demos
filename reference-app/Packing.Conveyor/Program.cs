@@ -42,25 +42,6 @@ using var connection = factory.CreateConnection(option);
 
 //just some fluff for creating interesting looking messages
 var random = new Random();
-var barcode = new StringBuilder();
-
-string CreateBarCode()
-{
-    //random barcode in the form 123-456-89
-    const string chars = "0123456789";
-    barcode.Clear();
-    for (int i = 0; i < 12; i++)
-    {
-        if (i % 4 == 0 && i != 0)
-        {
-            barcode.Append('-');
-        }
-
-        barcode.Append(chars[random.Next(chars.Length)]);
-    }
-
-    return barcode.ToString();
-}
 
 
 //create three demo conveyors
@@ -78,7 +59,7 @@ while (true)
 {
     foreach (var conveyor in conveyors)
     {
-        var msg = new ScanMessage(CreateBarCode(), DateTime.UtcNow, count);
+        var msg = new ScanMessage(BarcodeFunctions.CreateBarCode(), DateTime.UtcNow, count);
         
         //like I said earlier we need to encode the message ourselves
         //using json is the easiest, but you can use any encoding you want

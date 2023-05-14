@@ -38,3 +38,9 @@ Copy-Item -Path .\creds\dashboard.creds -Destination ..\packing-dashboard\dashbo
 .\nsc.exe edit user dashboard --deny-pub packing.`>
 .\nsc.exe generate creds --account peanuts --name dashboard --output-file ./creds/dashboard.creds
 Copy-Item -Path .\creds\dashboard.creds -Destination ..\packing-dashboard\dashboard.creds
+
+
+#generated the user for the leaf node
+.\nsc.exe add user sealing-nats-server
+.\nsc.exe generate creds --account peanuts --name sealing-nats-server --output-file ./leaf/sealing-nats-server.creds
+ 

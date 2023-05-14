@@ -1,4 +1,12 @@
-import { connect, consumerOpts, createInbox, credsAuthenticator, JSONCodec, jwtAuthenticator } from 'nats.ws'
+import {
+  connect,
+  consumerOpts,
+  createInbox,
+  credsAuthenticator,
+  JSONCodec,
+  jwtAuthenticator,
+  StringCodec,
+} from 'nats.ws'
 import './style.css'
 //import the copied file as a raw string in the sources.
 //this saves us from the trouble of recopying it every time
@@ -95,12 +103,24 @@ consumerOptions.deliverTo(createInbox())
 //  'packing.conveyor.MID'
 //  'packing.conveyor.SOUTH'
 consumerOptions.deliverLastPerSubject()
+;(async () => {
+  const sub = await jetstreamClient.subscribe('packing.conveyor.>', consumerOptions)
 
-const sub = await jetstreamClient.subscribe('packing.conveyor.>', consumerOptions)
+  for await (const msg of sub) {
+    const message = codec.decode(msg.data) as ScanMessage
+    console.log('Received message', message)
+    const lastPartOfSbuject = msg.subject.split('.').pop() ?? ''
+    updateDashboard(lastPartOfSbuject, message)
+  }
+})()
 
-for await (const msg of sub) {
-  const message = codec.decode(msg.data) as ScanMessage
-  console.log('Received message', message)
-  const lastPartOfSbuject = msg.subject.split('.').pop() ?? ''
-  updateDashboard(lastPartOfSbuject, message)
-}
+const stringCodec = StringCodec()
+const roastingSub = connection.subscribe('roasting.oven')
+
+;(async () => {
+  for await (const msg of roastingSub) {
+    const message = stringCodec.decode(msg.data) as string
+    console.log('roasted ', message)
+    document.getElementById('roast')!.innerHTML = message
+  }
+})()

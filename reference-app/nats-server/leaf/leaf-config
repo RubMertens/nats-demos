@@ -1,0 +1,22 @@
+port: 4333
+debug:true
+trace:false
+
+jetstream {
+    store_dir: "./data"
+}
+
+
+#setup the remote leafnode connection
+leafnodes {
+    remotes =[
+        {
+            #url of the main server
+            url: "nats://localhost:7422",
+            #the credentials used to connect
+            #this is what gives the leafnode permissions!
+            #any user that connects via this leaf node will have the permissions of this user
+            credentials: "./leaf/sealing-nats-server.creds",
+        }
+    ]
+}

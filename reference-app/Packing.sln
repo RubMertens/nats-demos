@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Packing.Models", "Packing.M
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Packing.Checker", "Packing.Checker\Packing.Checker.csproj", "{FEC1AD74-983B-4738-A974-68F9903AEC33}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Roasting.Oven", "Roasting.Oven\Roasting.Oven.csproj", "{6F38F81C-FDF5-450E-B790-887D24A42973}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +32,9 @@ Global
 		{FEC1AD74-983B-4738-A974-68F9903AEC33}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FEC1AD74-983B-4738-A974-68F9903AEC33}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FEC1AD74-983B-4738-A974-68F9903AEC33}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F38F81C-FDF5-450E-B790-887D24A42973}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F38F81C-FDF5-450E-B790-887D24A42973}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F38F81C-FDF5-450E-B790-887D24A42973}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F38F81C-FDF5-450E-B790-887D24A42973}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

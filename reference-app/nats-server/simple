@@ -33,3 +33,11 @@ include "./resolver-config"
 # notice we use the public NKEY of an account as the name with their jwt as the value
 # Users that were signed by the account can now sign a nonce on connect and use 
 # that to prove they are part of the account. 
+
+
+
+#configure the main nats-server to allow leafnodes
+#on port 7422 (the default)
+leafnodes {
+    port: 7422
+}
