@@ -3,6 +3,7 @@
   <component name="UserContentModel">
     <attachedFolders>
       <Path>nats-server</Path>
+      <Path>packing-dashboard</Path>
     </attachedFolders>
     <explicitIncludes />
     <explicitExcludes />
