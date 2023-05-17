@@ -75,6 +75,8 @@ const codec = JSONCodec()
 // but not 'conveyor.scan' or 'conveyor.1.scan.extra'
 //you can also except any message that comes after a certain subject using '>'
 //for example 'conveyor.>' will except 'conveyor.1.scan' and 'conveyor.1.scan.extra'
+
+
 // for await (const msg of connection.subscribe("packing.conveyor.>")) {
 //   const message = codec.decode(msg.data) as ScanMessage;
 //   console.log("Received message", message);
